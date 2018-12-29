@@ -6,3 +6,4 @@ Messy C++ playground, it had to be backed up somewhere
 - delta_ptr: implementation of "Delta Pointers" (automatic bound-checking pointers)
 - inplace_any: non-allocating version of std::any
 - constexpr_map: constexpr map/set implementation
+- struct_utils: utilities to manipulate aggregates (unpack them as tuples, print them, ...)
