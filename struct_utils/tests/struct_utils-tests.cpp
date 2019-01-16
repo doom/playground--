@@ -3,6 +3,7 @@
 */
 
 #include <gtest/gtest.h>
+#include <type_traits>
 #include <struct_utils/struct_utils.hpp>
 
 namespace
@@ -113,4 +114,14 @@ TEST(struct_utils, for_each)
     }));
     ASSERT_EQ(pc, &tic.c);
     ASSERT_EQ(pti, &tic.ti);
+
+    two_ints ti2{0, 1};
+    su::for_each(ti2, make_overload([](auto &&i) {
+        static_assert(std::is_same_v<decltype(i), int &>);
+    }));
+
+    const two_ints ti3{0, 1};
+    su::for_each(ti3, make_overload([](auto &&i) {
+        static_assert(std::is_same_v<decltype(i), const int &>);
+    }));
 }
